@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { ControlGroup, HTMLSelect, NumericInput } from "@blueprintjs/core";
 import setupTests from "../../../setupTests";
 import NumericRangeInput from "./NumericRangeInput";
@@ -13,7 +13,7 @@ describe("NumericRangeInput", () => {
   beforeEach(() => {
     const onRangeInputChangeMock = jest.fn(() => {});
 
-    component = shallow(
+    component = mount(
       <NumericRangeInput onRangeInputChange={onRangeInputChangeMock} />
     );
     controlGroup = component.find(ControlGroup);
@@ -25,8 +25,9 @@ describe("NumericRangeInput", () => {
     expect(component.exists()).toBe(true);
   });
 
-  it.only("renders a BlueprintJS ControlGroup", () => {
-    expect(controlGroup).toHaveLength(1);
+  it("renders a BlueprintJS ControlGroup", () => {
+    // TODO: Second ControlGroup exists in NumericInput component. Need a more robust test here.
+    expect(controlGroup).toHaveLength(2);
   });
 
   it("renders a BlueprintJS HTML Select inside the ControlGroup", () => {
